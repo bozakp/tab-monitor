@@ -1,0 +1,23 @@
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script>
+        $(document).ready({
+            $.get("n_tabs.json", function(data, _, _) {
+                $("#chart").highcharts("StockChart",
+                {
+                    credits: { enabled: false; },
+                    exporting: { enabled: false; },
+                    series: [{
+                        name: "Number of tabs open in Firefox",
+                        data: [[]]
+                    }]
+                });
+            });
+        });
+</head>
+<body>
+    <div id="chart"></div>
+</body>
+</html>
