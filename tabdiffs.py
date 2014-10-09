@@ -86,7 +86,10 @@ def update_with_current_tabs():
 
 def main():
     while True:
-        update_with_current_tabs()
+        try:
+            update_with_current_tabs()
+        except e:
+            print(e)
         time.sleep(15)  # the session store is written to every 15 seconds
         
 if __name__ == "__main__":
