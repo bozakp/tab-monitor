@@ -1,7 +1,7 @@
 import json
 import time
 
-SESSION_STORE_PATH = r"C:\Users\Phil\AppData\Roaming\Mozilla\Firefox\Profiles\xs71x2wj.default\sessionstore.js"
+SESSION_STORE_PATH = r"C:\Users\bozak\AppData\Roaming\Mozilla\Firefox\Profiles\0i7y7gr6.default\sessionstore.js"
 OUTPUT_PATH = "tab_history.log"
 
 

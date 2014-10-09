@@ -3,6 +3,11 @@
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://code.highcharts.com/stock/highstock.js"></script>
     <script>
+		Highcharts.setOptions({
+			global: {
+				useUTC: false
+			}
+		});
         function fileSelected(files) {
             var reader = new FileReader();
             reader.onload = function(e) { setChart(JSON.parse(e.target.result)); };
