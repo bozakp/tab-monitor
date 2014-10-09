@@ -1,3 +1,5 @@
+import json
+
 LOG_FILE = "tab_history.log"
 JSON_OUTPUT_FILE = "n_tabs.json"
 
@@ -31,7 +33,7 @@ def main():
         prev_count = new_count
 
     with open(JSON_OUTPUT_FILE, 'w') as f:
-        json.dump(data, f)
+        json.dump(data, f, separators=(',', ':'))  # make it compact
 
 if __name__ == "__main__":
     main()

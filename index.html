@@ -3,21 +3,30 @@
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://code.highcharts.com/stock/highstock.js"></script>
     <script>
-        $(document).ready({
-            $.get("n_tabs.json", function(data, _, _) {
-                $("#chart").highcharts("StockChart",
-                {
-                    credits: { enabled: false; },
-                    exporting: { enabled: false; },
-                    series: [{
-                        name: "Number of tabs open in Firefox",
-                        data: [[]]
-                    }]
-                });
+        function fileSelected(files) {
+            var reader = new FileReader();
+            reader.onload = function(e) { setChart(JSON.parse(e.target.result)); };
+            reader.readAsText(files[0]);
+        }
+        function setChart(data) {
+            $.each(data, function(_,e) {
+                e[0] = e[0]*1000;
             });
-        });
+            console.log(data);
+            $("#chart").highcharts("StockChart",
+            {
+                credits: { enabled: false },
+                exporting: { enabled: false },
+                series: [{
+                    name: "Number of tabs open in Firefox",
+                    data: data
+                }]
+            });
+        }
+    </script>
 </head>
 <body>
+    <div>Select the JSON file: <input type="file" id="input" onchange="fileSelected(this.files)"></div>
     <div id="chart"></div>
 </body>
 </html>
