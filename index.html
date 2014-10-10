@@ -43,10 +43,17 @@
             });
             return data;
 		}
+        $("input[type=file]").change(function() { fileSelected(this.files); });
+        $("button").click(function() { $("input[type=file]").change(); });
     </script>
+    <style>
+    body {
+        font-family: "Helvetica";
+    }
+    </style>
 </head>
 <body>
-    <div>Select the JSON file: <input type="file" id="input" onchange="fileSelected(this.files)"></div>
+    <div>Select the JSON file: <input type="file" id="input" onchange="fileSelected(this.files)"><button>Refresh</button></div>
     <div id="chart"></div>
 </body>
 </html>
