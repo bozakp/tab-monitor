@@ -1,4 +1,5 @@
 import json
+import time
 
 LOG_FILE = "tab_history.log"
 JSON_OUTPUT_FILE = "n_tabs.json"
@@ -21,7 +22,7 @@ def line_sets(lines):
         yield lines[start:stop]
         start = stop
 
-def main():
+def run():
     with open(LOG_FILE, 'r') as f:
         lines = f.readlines()
 
@@ -34,6 +35,16 @@ def main():
 
     with open(JSON_OUTPUT_FILE, 'w') as f:
         json.dump(data, f, separators=(',', ':'))  # make it compact
+        
+def main():
+    print("Running tabdiff -> JSON converter...")
+    while True:
+        try:
+            run()
+            print("[%s] Finished conversion" % time.strftime("%H:%M:%S"))
+        except e:
+            print(e)
+        time.sleep(60)
 
 if __name__ == "__main__":
     main()

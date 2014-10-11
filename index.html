@@ -2,6 +2,7 @@
 <head>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
     <script>
 		Highcharts.setOptions({
 			global: {
@@ -16,6 +17,7 @@
         function setChart(d) {
             var data = correctData(d);
             console.log(data);
+            var sevenAMToday = moment().startOf('day').hours(7).minutes(30).valueOf();
             $("#chart").highcharts("StockChart",
             {
                 credits: { enabled: false },
@@ -25,8 +27,13 @@
                     data: data
                 }],
 				xAxis: {
+                    min: sevenAMToday,
 					ordinal: false
-				}
+				},
+                yAxis: {
+                    max: 85,
+                    min: 0
+                }
             });
         }
 		function correctData(data) {
@@ -43,8 +50,10 @@
             });
             return data;
 		}
-        $("input[type=file]").change(function() { fileSelected(this.files); });
-        $("button").click(function() { $("input[type=file]").change(); });
+        $(document).ready(function() {
+            $("input[type=file]").change(function() { fileSelected(this.files); });
+            $("button").click(function() { console.log("hello"); fileSelected($("input[type=file]")[0].files); });
+        });
     </script>
     <style>
     body {
