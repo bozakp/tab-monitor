@@ -85,14 +85,15 @@ def update_with_current_tabs():
     writer.write(ts, curr_tabs)
 
 def main():
-    print("Running tabdiff...")
-    while True:
-        try:
+    try:
+        print("Running tabdiff...")
+        while True:
             update_with_current_tabs()
             print("[%s] Finished diffing" % time.strftime("%H:%M:%S"))
-        except e:
-            print(e)
-        time.sleep(15)  # the session store is written to every 15 seconds
+            time.sleep(15)  # the session store is written to every 15 seconds
+    except e:
+        print(e)
+        main()
         
 if __name__ == "__main__":
     main()

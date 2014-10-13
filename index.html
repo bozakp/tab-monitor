@@ -17,7 +17,7 @@
         function setChart(d) {
             var data = correctData(d);
             console.log(data);
-            var sevenAMToday = moment().startOf('day').valueOf();
+            var startOfToday = moment().startOf('day').valueOf();
             $("#chart").highcharts("StockChart",
             {
                 credits: { enabled: false },

@@ -37,14 +37,15 @@ def run():
         json.dump(data, f, separators=(',', ':'))  # make it compact
         
 def main():
-    print("Running tabdiff -> JSON converter...")
-    while True:
-        try:
+    try:
+        print("Running tabdiff -> JSON converter...")
+        while True:
             run()
             print("[%s] Finished conversion" % time.strftime("%H:%M:%S"))
-        except e:
-            print(e)
-        time.sleep(60)
+            time.sleep(60)
+    except e:
+        print(e)
+        main()
 
 if __name__ == "__main__":
     main()
