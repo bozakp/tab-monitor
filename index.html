@@ -17,7 +17,9 @@
         function setChart(d) {
             var data = correctData(d);
             console.log(data);
-            var startOfToday = moment().startOf('day').valueOf();
+            var sevenAMToday = moment().startOf('day').hours(7).minutes(30).valueOf();
+            var now = moment().startOf('hour').valueOf();
+            var graphStart = sevenAMToday > now ? sevenAMToday : now;
             $("#chart").highcharts("StockChart",
             {
                 credits: { enabled: false },
@@ -27,7 +29,7 @@
                     data: data
                 }],
 				xAxis: {
-                    min: startOfToday,
+                    min: graphStart,
 					ordinal: false
 				},
                 yAxis: {

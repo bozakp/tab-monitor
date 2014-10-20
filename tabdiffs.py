@@ -1,6 +1,8 @@
 import json
 import time
 
+import to_json
+
 SESSION_STORE_PATH = r"C:\Users\bozak\AppData\Roaming\Mozilla\Firefox\Profiles\0i7y7gr6.default\sessionstore.js"
 OUTPUT_PATH = "tab_history.log"
 
@@ -89,7 +91,8 @@ def main():
         print("Running tabdiff...")
         while True:
             update_with_current_tabs()
-            print("[%s] Finished diffing" % time.strftime("%H:%M:%S"))
+            to_json.run()
+            print("[%s] Finished diffing and converting to JSON" % time.strftime("%H:%M:%S"))
             time.sleep(15)  # the session store is written to every 15 seconds
     except e:
         print(e)
