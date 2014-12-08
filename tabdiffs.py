@@ -75,9 +75,18 @@ class SessionStoreLoader:
         for window in jObj["windows"]:
             for tab in window["tabs"]:
                 yield tab["extData"]["treestyletab-id"]
+
+class ConfigLoader:
+    def __init__(self, config_path="config.json"):
+        self.config = json.load(open(config_path, "r"))
+
+    def get_value(self, key):
+        return self.config[key]
         
 def update_with_current_tabs():
-    ssl = SessionStoreLoader(SESSION_STORE_PATH)
+    ff_directory = ConfigLoader().get_value("firefox_directory")
+    session_store_path = os.path.join(ff_directory, "sessionstore.js")
+    ssl = SessionStoreLoader(session_store_path)
     curr_tabs = set(ssl.get_open_tab_ids())
     
     loader = TabDiffLoader(OUTPUT_PATH)
