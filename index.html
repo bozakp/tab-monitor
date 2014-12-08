@@ -1,5 +1,8 @@
 <html>
 <head>
+    <title>Number of Tabs Graph</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://code.highcharts.com/stock/highstock.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
@@ -19,7 +22,7 @@
             console.log(data);
             var sevenAMToday = moment().startOf('day').hours(7).minutes(30).valueOf();
             var now = moment().startOf('hour').valueOf();
-            var graphStart = sevenAMToday > now ? sevenAMToday : now;
+            var graphStart = sevenAMToday > now ? now : sevenAMToday;
             $("#chart").highcharts("StockChart",
             {
                 credits: { enabled: false },
@@ -33,7 +36,7 @@
 					ordinal: false
 				},
                 yAxis: {
-                    max: 85,
+                    max: 120,
                     min: 0
                 }
             });
