@@ -1,11 +1,13 @@
+#!/usr/bin/env python
+
 import json
+import os
+import sys
 import time
 
-import to_json
+import count_open_tabs
 
-SESSION_STORE_PATH = r"C:\Users\bozak\AppData\Roaming\Mozilla\Firefox\Profiles\0i7y7gr6.default\sessionstore.js"
 OUTPUT_PATH = "tab_history.log"
-
 
 class TabSet:
     def __init__(self, init_set=set()):
@@ -96,16 +98,12 @@ def update_with_current_tabs():
     writer.write(ts, curr_tabs)
 
 def main():
-    try:
-        print("Running tabdiff...")
-        while True:
-            update_with_current_tabs()
-            to_json.run()
-            print("[%s] Finished diffing and converting to JSON" % time.strftime("%H:%M:%S"))
-            time.sleep(15)  # the session store is written to every 15 seconds
-    except e:
-        print(e)
-        main()
+    print("Running tabdiff...")
+    while True:
+        update_with_current_tabs()
+        count_open_tabs.run(OUTPUT_PATH, "n_tabs.json")
+        print("[%s] Finished diffing and converting to JSON" % time.strftime("%H:%M:%S"))
+        time.sleep(15)  # the session store is written to every 15 seconds
         
 if __name__ == "__main__":
     main()
