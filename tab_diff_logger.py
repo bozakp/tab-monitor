@@ -76,7 +76,8 @@ class SessionStoreLoader:
         jObj = json.load(open(self.path, 'r'))
         for window in jObj["windows"]:
             for tab in window["tabs"]:
-                yield tab["extData"]["treestyletab-id"]
+                if "extData" in tab and "treestyletab-id" in tab["extData"]:
+                    yield tab["extData"]["treestyletab-id"]
 
 class ConfigLoader:
     def __init__(self, config_path="config.json"):
