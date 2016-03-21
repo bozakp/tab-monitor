@@ -105,10 +105,10 @@ def main():
         update_with_current_tabs()
         if count_tabs_counter == 0:
             count_open_tabs.run(OUTPUT_PATH, "n_tabs.json")
-            count_tabs_counter += 1
+        count_tabs_counter += 1
         if count_tabs_counter >= 4:
             count_tabs_counter = 0
-        print("[%s] Finished diffing and converting to JSON" % time.strftime("%H:%M:%S"))
+        print("[%s] Finished diffing and converting to JSON, count_tabs_counter=%d" % (time.strftime("%H:%M:%S"), count_tabs_counter))
         time.sleep(15)  # the session store is written to every 15 seconds
 
 if __name__ == "__main__":
